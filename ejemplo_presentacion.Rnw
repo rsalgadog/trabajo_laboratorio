@@ -1,0 +1,103 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% Plantilla de beamer %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%    FS-492 y 493     %%%%%%%%%%%%%%%%%
+%%%%%%%%%  Elaborarda por: Ricardo Salgado   %%%%%%%%%%
+\documentclass{beamer}
+%%%%% Color, tema y fuente  del beamer %%%%%
+\usetheme{Madrid}
+\usecolortheme{crane}
+\usefonttheme{professionalfonts}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% Paquetes %%%%%%%%%%%%%%%%%
+\usepackage[spanish, es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[cleanup, subfolder]{gnuplottex}
+\usepackage{listings} 
+\usepackage{color}
+\usepackage[nogin]{Sweave}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%% Configurando algunos aspectos del beamer %%%%%%
+\setbeamertemplate{caption}[numbered]
+\newcommand{\nologo}{\setbeamertemplate{logo}{}}
+\setbeamertemplate{navigation symbols}{} % quita los símbolo de navegación
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%% Configurando listings para los códigos %%%%%%%%%%%%
+\lstdefinestyle{probando}{
+  basicstyle=\scriptsize\ttfamily,
+  keywordstyle=\bfseries\color{blue!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{red},
+  stringstyle=\color{orange},
+  inputencoding=utf8,
+  numbers=left,
+  numbersep=2pt,
+  numberstyle=\tiny,
+  showstringspaces=false
+}
+\lstset{style=probando, literate={~}{$\sim$}1}
+%%%%%%% Título, autor, fecha, institución, logo %%%%%%%%%
+\title[Ejemplo Beamer]{\textbf{Ejemplo}}
+\author[\textbf{Ricardo Salgado}]{Laboratorio Avanzado\texorpdfstring{\\[2mm]}{}}
+\institute[UNAH]{Universidad Nacional Autónoma de Honduras}
+\date[\today]{}
+\titlegraphic{\vspace*{-5mm}
+\begin{center}
+\includegraphics[scale=0.45]{/Users/ricardo/.CMVolumes/Dropbox/Imagenes/logo-unah-full-color.png}% cambiar ruta a su ubicacion de imagen
+\includegraphics[scale=0.063]{/Users/ricardo/.CMVolumes/Dropbox/Imagenes/LOGO2.png} % cambiar ruta a su ubicacion de imagen
+\end{center}
+}
+\logo{\includegraphics[scale=0.035]{/Users/ricardo/.CMVolumes/Dropbox/Imagenes/LOGO2.png}}% cambiar ruta a su ubicacion de imagen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+%%%%%%%%%%%%% Portada de la presentación %%%%%%%%%%%%%%%
+{\nologo 
+\begin{frame}
+\titlepage
+\end{frame}
+}
+%%%%%%%%%%%%%%%%% Slides %%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%% Slide con código gnuplot %%%%%%%%%%%%%%%
+\begin{frame}[fragile] %se agrega fragile para usar código en en el slide
+\frametitle{Probando}
+\begin{figure}
+\begin{gnuplot}[terminal = cairolatex]
+set size 0.9,0.9
+plot x
+\end{gnuplot}
+\caption{Probando}
+\end{figure}
+\end{frame}
+
+%%% Slide con chunk %%%%
+\begin{frame}[fragile]
+\frametitle{Probando}
+<<>>=
+a <- c(2,4,6,8)
+b <- c(4,6,8,9)
+lm(b~a)
+@
+
+\end{frame}
+
+%%%%%%% Slide mostrando como escribir código R como muestra %%%%%%%%%%%
+\begin{frame}[fragile]
+Mostrando un código de R
+\begin{lstlisting}[language=R]
+a <- data.frame()
+lm(n~l) #crea un data.frame
+\end{lstlisting}
+\end{frame}
+%%%%%%%%% Slide mostrando como escribir código gnuplot como muestra %%%%%%%5
+\begin{frame}[fragile]
+Mostrando un código gnuplot
+\begin{lstlisting}[language=gnuplot]
+set xtics 2
+set ylabel "Eje y" 
+plot x
+\end{lstlisting}
+\end{frame}
+\end{document}
+
